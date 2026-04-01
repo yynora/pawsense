@@ -4,9 +4,12 @@ const cors = require("cors");
 const { GoogleGenerativeAI, SchemaType } = require("@google/generative-ai");
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || "*",
+  methods: ["GET", "POST"],
+}));
 app.use(express.json({ limit: "50mb" }));
 
 // Initialize the standard REST SDK

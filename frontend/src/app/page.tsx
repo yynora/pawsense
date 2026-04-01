@@ -14,7 +14,8 @@ export default function Dashboard() {
   const handleGenerateReport = async () => {
     try {
       setAnxietyReport("Generating report...");
-      const res = await fetch("http://localhost:8080/generate-report", { method: "POST" });
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8080";
+      const res = await fetch(`${backendUrl}/generate-report`, { method: "POST" });
       const data = await res.json();
       setAnxietyReport(data.report || "No patterns detected locally.");
     } catch (err) {

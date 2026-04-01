@@ -109,7 +109,8 @@ export default function PetVideoFeed({
 
     // 3. Dispatch REST Polling Request
     try {
-      const res = await fetch('http://localhost:8080/api/analyze-pulse', {
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8080";
+      const res = await fetch(`${backendUrl}/api/analyze-pulse`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
